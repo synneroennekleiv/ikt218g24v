@@ -1,9 +1,13 @@
-#include "libc/stdint.h"
+#ifndef GDT_H
+#define GDT_H
 
+#include <libc/stdint.h>
+
+extern void gdt_flush();
 
 // Structure representing a Global Descriptor Table (GDT) entry
 struct gdt_entry_struct{
-    uint16_t limit; // Segment limit
+    uint16_t limit_low; // Segment limit
     uint16_t base_low; // Lower 16 bits of the base address
     uint8_t base_middle; // Next 8 bits of the base address
     uint8_t access; // Access flags
@@ -21,6 +25,10 @@ struct gdt_ptr_struct{
 // Declare the function to initialize the GDT
 void init_gdt();
 
+// Load the gdt
+void gdt_load(struct gdt_ptr_struct *_gdtp);
 
 // Declare the function to set up a GDT gate
-void set_gdtGate(uint32_t num, uint32_t base, uint32_t limit, uint8_t access, uint8_t gran);
+void set_gdt_gate(uint32_t num, uint32_t base, uint32_t limit, uint8_t access, uint8_t flag);
+
+#endif // GDT_H
