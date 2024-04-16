@@ -1,18 +1,22 @@
-global gdt_flush         ; Declare gdt_flush as a global symbol
+[GLOBAL gdt_flush]    ; Allows the C code to call gdt_flush().
 
 gdt_flush:
-    MOV eax, [esp+4]     ; Load the GDT address from the argument passed on the stack
-    LGDT [eax]           ; Load the GDT with Load GDT instruction
+   mov eax, [esp+4]  ; Get the pointer to the GDT, passed as a parameter.
+   lgdt [eax]        ; Load the new GDT pointer
 
-    ; Set data segment (ds), extra segment (es), 
-    ;fs, gs, and stack segment (ss) registers
-    MOV ax, 0x10         ; 0x10 is the selector for the data segment
-    MOV ds, ax
-    MOV es, ax
-    MOV fs, ax
-    MOV gs, ax
-    MOV ss, ax
-
-    JMP 0x08:.flush     ; Jump to the 32-bit code segment (0x08) to start executing
+   mov ax, 0x10      ; 0x10 is the offset in the GDT to our data segment
+   mov ds, ax        ; Load all data segment selectors
+   mov es, ax
+   mov fs, ax
+   mov gs, ax
+   mov ss, ax
+   jmp 0x08:.flush   ; 0x08 is the offset to our code segment: Far jump!
 .flush:
-    RET                 ; Return from the gdt_flush function
+   ret
+
+[GLOBAL idt_flush]    ; Allows the C code to call idt_flush().
+
+idt_flush:
+   mov eax, [esp+4]  ; Get the pointer to the IDT, passed as a parameter.
+   lidt [eax]        ; Load the IDT pointer.
+   ret

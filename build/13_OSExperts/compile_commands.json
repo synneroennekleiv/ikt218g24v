@@ -1,6 +1,11 @@
 [
 {
   "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
+  "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/ikt218g24v/src/13_OSExperts/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/descriptor_tables.c.o -c /workspaces/ikt218g24v/src/13_OSExperts/src/descriptor_tables.c",
+  "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/descriptor_tables.c"
+},
+{
+  "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
   "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/ikt218g24v/src/13_OSExperts/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/function.c.o -c /workspaces/ikt218g24v/src/13_OSExperts/src/function.c",
   "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/function.c"
 },
@@ -11,8 +16,18 @@
 },
 {
   "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
-  "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/ikt218g24v/src/13_OSExperts/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/gdt.c.o -c /workspaces/ikt218g24v/src/13_OSExperts/src/gdt.c",
-  "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/gdt.c"
+  "command": "/usr/bin/nasm -I/workspaces/ikt218g24v/src/13_OSExperts/include -f elf32 -o CMakeFiles/uiaos-kernel.dir/src/interrupt.asm.o /workspaces/ikt218g24v/src/13_OSExperts/src/interrupt.asm",
+  "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/interrupt.asm"
+},
+{
+  "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
+  "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/ikt218g24v/src/13_OSExperts/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/io_ports.c.o -c /workspaces/ikt218g24v/src/13_OSExperts/src/io_ports.c",
+  "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/io_ports.c"
+},
+{
+  "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
+  "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/ikt218g24v/src/13_OSExperts/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/isr.c.o -c /workspaces/ikt218g24v/src/13_OSExperts/src/isr.c",
+  "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/isr.c"
 },
 {
   "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
@@ -23,6 +38,16 @@
   "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
   "command": "/usr/local/bin/i686-elf-g++ -I/workspaces/ikt218g24v/src/13_OSExperts/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -g -Wno-unused-variable -Wno-unused-parameter -std=gnu++20 -o CMakeFiles/uiaos-kernel.dir/src/kernel.cpp.o -c /workspaces/ikt218g24v/src/13_OSExperts/src/kernel.cpp",
   "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/kernel.cpp"
+},
+{
+  "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
+  "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/ikt218g24v/src/13_OSExperts/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/memory.c.o -c /workspaces/ikt218g24v/src/13_OSExperts/src/memory.c",
+  "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/memory.c"
+},
+{
+  "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
+  "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/ikt218g24v/src/13_OSExperts/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/monitor.c.o -c /workspaces/ikt218g24v/src/13_OSExperts/src/monitor.c",
+  "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/monitor.c"
 },
 {
   "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
