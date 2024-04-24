@@ -1,4 +1,5 @@
 #include "util.h"
+#include <libc/string.h>
 
 void memory_copy(char *source, char *dest, int nbytes) {
     int i;
@@ -39,9 +40,3 @@ void reverse(char s[]) {
     }
 }
 
-/* K&R */
-int strlen(char s[]) {
-    int i = 0;
-    while (s[i] != '\0') ++i;
-    return i;
-}

@@ -8,10 +8,14 @@
 #include "isr.h"
 #include "monitor.h"
 #include <libc/string.h>
+#include "keyboard.h"
 
 // This gets called from our ASM interrupt handler stub.
 void isr_handler(registers_t regs)
 {
+    if(regs.int_no == 33){
+        keyboard_handler();
+    }
    monitor_write("recieved interrupt: ");
    monitor_write_dec(regs.int_no);
    monitor_put('\n');

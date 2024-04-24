@@ -3,6 +3,7 @@
 #include <io_ports.h>
 #include <memory.h>
 #include "libc/stdint.h"
+#include <util.h>
 
 
 gdt_entry_t gdt_entries[5];
@@ -131,3 +132,5 @@ void idt_set_gate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags)
    // It sets the interrupt gate's privilege level to 3.
    idt_entries[num].flags   = flags  | 0x60;
 }
+
+

@@ -61,7 +61,22 @@
 },
 {
   "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
+  "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/ikt218g24v/src/13_OSExperts/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/ports.c.o -c /workspaces/ikt218g24v/src/13_OSExperts/src/ports.c",
+  "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/ports.c"
+},
+{
+  "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
+  "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/ikt218g24v/src/13_OSExperts/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/string.c.o -c /workspaces/ikt218g24v/src/13_OSExperts/src/string.c",
+  "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/string.c"
+},
+{
+  "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
   "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/ikt218g24v/src/13_OSExperts/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/util.c.o -c /workspaces/ikt218g24v/src/13_OSExperts/src/util.c",
   "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/util.c"
+},
+{
+  "directory": "/workspaces/ikt218g24v/build/13_OSExperts",
+  "command": "/usr/local/bin/i686-elf-gcc -I/workspaces/ikt218g24v/src/13_OSExperts/include -g -Wall -Wextra -nostdinc -nostdlib -fno-builtin -fno-stack-protector -fno-stack-check -fno-lto -fPIE -m32 -march=i386 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone -Wno-main -g -Wno-unused-variable -Wno-unused-parameter -std=gnu99 -o CMakeFiles/uiaos-kernel.dir/src/vga.c.o -c /workspaces/ikt218g24v/src/13_OSExperts/src/vga.c",
+  "file": "/workspaces/ikt218g24v/src/13_OSExperts/src/vga.c"
 }
 ]

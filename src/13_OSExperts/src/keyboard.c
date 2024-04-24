@@ -1,76 +1,74 @@
-#include <keyboard.h>
-#include <compositor.h>
-#include <system.h>
-#include <printf.h>
+#include "libc/stdint.h"
+#include "descriptor_tables.h"
+#include "util.h"
+#include "libc/stdio.h"
+#include "keyboard.h"
+#include "libc/stdbool.h"
+#include <io_ports.h>
 #include <isr.h>
+#include <monitor.h>
+
+static unsigned char ascii_lookup_table[128] =
+        {
+                0, 27, '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '\b', '\t',
+                'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n', 0, 'a', 's',
+                'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', '`', 0, '\\', 'z', 'x', 'c', 'v',
+                'b', 'n', 'm', ',', '.', '/', 0, '*', 0, ' ', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                '7', '8', '9', '-', '4', '5', '6', '+', '1', '2', '3', '0', '.', 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        };
 
 
-char kbdus[128] = {
-    0,  27, '1', '2', '3', '4', '5', '6', '7', '8', /* 9 */
-    '9', '0', '-', '=', '\b',   /* Backspace */
-    '\t',           /* Tab */
-    'q', 'w', 'e', 'r', /* 19 */
-    't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n',       /* Enter key */
-    0,          /* 29   - Control */
-    'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';',   /* 39 */
-    '\'', '`',   0,     /* Left shift */
-    '\\', 'z', 'x', 'c', 'v', 'b', 'n',         /* 49 */
-    'm', ',', '.', '/',   0,                    /* Right shift */
-    '*',
-    0,  /* Alt */
-    ' ',    /* Space bar */
-    0,  /* Caps lock */
-    0,  /* 59 - F1 key ... > */
-    0,   0,   0,   0,   0,   0,   0,   0,
-    0,  /* < ... F10 */
-    0,  /* 69 - Num lock*/
-    0,  /* Scroll Lock */
-    0,  /* Home key */
-    0,  /* Up Arrow */
-    0,  /* Page Up */
-    '-',
-    0,  /* Left Arrow */
-    0,
-    0,  /* Right Arrow */
-    '+',
-    0,  /* 79 - End key*/
-    0,  /* Down Arrow */
-    0,  /* Page Down */
-    0,  /* Insert Key */
-    0,  /* Delete Key */
-    0,   0,   0,
-    0,  /* F11 Key */
-    0,  /* F12 Key */
-    0,  /* All other keys are undefined */
-};
 
-void keyboard_handler(registers_t * r)
-{
-    winmsg_t msg;
-    int i, scancode;
-    msg.msg_type = WINMSG_KEYBOARD;
-    //get scancode with "timeout"
-    for(i = 1000; i > 0; i++) {
-        // Check if scan code is ready
-        if((inportb(0x64) & 1) == 0) continue;
-        // Get the scan code
-        scancode = inportb(0x60);
-        break;
-    }
-    if(i > 0) {
-        if(scancode & 0x80) {
-            // Key release
-        }
-        else {
-            // Key down
-            qemu_printf("Key pressed %c\n", kbdus[scancode]);
-            // Send message to the focus window
-            msg.key_pressed = kbdus[scancode];
-            msg.window = get_focus_window();
-            window_message_handler(&msg);
-        }
-    }
+uint8_t input_buffer_occupancy = 0;
+char input_buffer[256];
+
+
+void input_buffer_backspace() {
+  if (input_buffer_occupancy > 0) {
+    input_buffer_occupancy -= 1;
+    input_buffer[input_buffer_occupancy] = 0;
+  }
 }
-void keyboard_init() {
-    register_interrupt_handler(IRQ_BASE + 1, keyboard_handler);
+
+void keyboard_handler()
+{
+    uint8_t scancode = inb(0x60);
+    /*monitor_put('\n');
+    monitor_write_dec(scancode);
+    monitor_put('\n');*/
+
+    if(!(scancode & 0x80))
+    {
+        char character;
+
+        // Handle backspace
+        if (scancode == 0x0E) {
+        input_buffer_backspace();
+        handle_backspace();
+        return;
+        }
+
+        character = ascii_lookup_table[scancode];
+        monitor_put(character);
+
+    
+        //if(scancode < sizeof(ascii_lookup_table)){
+        //    character = scancode;
+        //}
+
+        // Print the character if it's not a special key
+
+        //if(character != 0){
+        //    monitor_put(character);
+        //}
+    }
+
+
+
+}
+
+void init_keyboard(){
+        asm volatile ("sti");
+        register_interrupt_handler(IRQ1, keyboard_handler);
 }

@@ -138,3 +138,13 @@ void monitor_write(char *c)
        monitor_put(c[i++]);
    }
 }
+
+void handle_backspace() {
+    cursor_x--;  // Move cursor back one position
+    // Clear the character at the new cursor position
+    uint8_t attributeByte = (0 /*black*/ << 4) | (15 /*white*/ & 0x0F);
+    uint16_t blank = 0x20 /* space */ | (attributeByte << 8);
+    uint16_t *location = video_memory + (cursor_y * 80 + cursor_x);
+    *location = ' ' | (0 << 8);  // Set the character to space with default attributes
+    move_cursor();  // Move cursor to the new position
+}
