@@ -6,4 +6,16 @@
 
 void *memset(void *s, int c, size_t n);
 
+void malloc();
+
+void free();
+
+//void init_kernel_memory(&end);
+
+void init_paging();
+
+void print_memory_layout();
+
+
+
 #endif // MEMORY_H

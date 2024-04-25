@@ -9,6 +9,7 @@
 #include "monitor.h"
 #include <libc/string.h>
 #include "keyboard.h"
+#include <descriptor_tables.h>
 
 // This gets called from our ASM interrupt handler stub.
 void isr_handler(registers_t regs)
@@ -76,6 +77,59 @@ void register_interrupt_handler(uint8_t n, isr_t handler)
 {
   interrupt_handlers[n] = handler;
 }
+
+
+/* This array is actually an array of function pointers. We use
+*  this to handle custom IRQ handlers for a given IRQ */
+void *irq_routines[16] =
+{
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0
+};
+
+/* This installs a custom IRQ handler for the given IRQ */
+void irq_install_handler(int irq, void (*handler)(registers_t r))
+{
+    irq_routines[irq] = handler;
+}
+
+/* This clears the handler for a given IRQ */
+void irq_uninstall_handler(int irq)
+{
+    irq_routines[irq] = 0;
+}
+
+
+/* Normally, IRQs 0 to 7 are mapped to entries 8 to 15. This
+*  is a problem in protected mode, because IDT entry 8 is a
+*  Double Fault! Without remapping, every time IRQ0 fires,
+*  you get a Double Fault Exception, which is NOT actually
+*  what's happening. We send commands to the Programmable
+*  Interrupt Controller (PICs - also called the 8259's) in
+*  order to make IRQ0 to 15 be remapped to IDT entries 32 to
+*  47 */
+void irq_remap(void)
+{
+    outb(0x20, 0x11);
+    outb(0xA0, 0x11);
+    outb(0x21, 0x20);
+    outb(0xA1, 0x28);
+    outb(0x21, 0x04);
+    outb(0xA1, 0x02);
+    outb(0x21, 0x01);
+    outb(0xA1, 0x01);
+    outb(0x21, 0x0);
+    outb(0xA1, 0x0);
+}
+
+/* We first remap the interrupt controllers, and then we install
+*  the appropriate ISRs to the correct entries in the IDT. This
+*  is just like installing the exception handlers */
+
+
+
+
+
 // This gets called from our ASM interrupt handler stub.
 void irq_handler(registers_t regs)
 {

@@ -5,9 +5,8 @@
 #include <monitor.h>
 #include <keyboard.h>
 #include <descriptor_tables.h>
-#include <function.h>
 #include <keyboard.h>
-
+#include <isr.h>
 // Declare the GDT initialization function implemented in assembly
 extern void init_gdt();
 
@@ -27,9 +26,9 @@ int main(uint32_t magic, struct multiboot_info* mb_info_addr) {
     init_gdt();
     init_idt();
     init_keyboard();
-
+    
     // Print "Hello World" to the console using printf-like function
-    monitor_clear();
+    monitor_write("Hello world");
     
     //asm volatile ("int $0x8");
     //asm volatile ("int $0x4");
