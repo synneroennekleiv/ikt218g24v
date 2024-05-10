@@ -1,7 +1,7 @@
 #include <descriptor_tables.h>
 #include <libc/string.h>
 #include <io_ports.h>
-#include <memory.h>
+#include <memory/memory.h>
 #include "libc/stdint.h"
 #include <util.h>
 #include <isr.h>

@@ -1,4 +1,4 @@
-#include "memory.h"
+#include <memory/memory.h>
 
 void *memset(void *s, int c, size_t n) {
     unsigned char* p = s;
