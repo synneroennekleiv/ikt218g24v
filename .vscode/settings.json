@@ -15,7 +15,11 @@
         "interrupts.h": "c",
         "memory.h": "c",
         "limits.h": "c",
-        "descriptor_tables.h": "c"
+        "descriptor_tables.h": "c",
+        "string.h": "c",
+        "stdarg.h": "c",
+        "isr.h": "c",
+        "io_ports.h": "c"
     }
 
 }

@@ -57,7 +57,7 @@ set(CMAKE_ASM_NASM_COMPILE_OBJECT
 set(OS_KERNEL_LINKER "${CMAKE_CURRENT_SOURCE_DIR}/src/arch/${OS_ARCH_TARGET}/linker.ld")
 
 # Create a variable containing all source files in the src directory
-file(GLOB SOURCES "src/*.c" "src/*.cpp" "src/*.asm")
+file(GLOB SOURCES "src/*.c" "src/*.cpp" "src/*.asm" "src/memory/*.c")
 
 # Add the executable using the gathered source files
 add_executable(uiaos-kernel ${SOURCES})

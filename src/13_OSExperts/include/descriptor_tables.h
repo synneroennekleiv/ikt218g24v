@@ -106,3 +106,6 @@ extern void irq12();
 extern void irq13();
 extern void irq14();
 extern void irq15();
+
+#define GDT_ENTRIES 5
+#define IDT_ENTRIES 256

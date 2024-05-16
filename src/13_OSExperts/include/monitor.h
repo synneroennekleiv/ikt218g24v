@@ -14,6 +14,12 @@ void monitor_clear();
 // Output a null-terminated ASCII string to the monitor.
 void monitor_write(char *c);
 
+void printf(char *c, ...);
+
+void int_to_string(char* str, int num);
+void float_to_string(char* str, float f, int precision);
+
+
 void monitor_write_dec(uint32_t n);
 void monitor_write_hex(uint32_t n);
 

@@ -6,6 +6,7 @@
 
 #include "libc/stdint.h"
 
+
 #define IRQ0 32
 #define IRQ1 33
 #define IRQ2 34
@@ -22,6 +23,7 @@
 #define IRQ13 45
 #define IRQ14 46
 #define IRQ15 47
+#define IRQ_COUNT 16
 
 
 typedef struct registers
@@ -36,8 +38,23 @@ typedef struct registers
 // For IRQs, to ease confusion, use the #defines above as the
 // first parameter.
 typedef void (*isr_t)(registers_t);
-void register_interrupt_handler(uint8_t n, isr_t handler);
+
+// Register an IRQ handler
+void register_irq_handler(int irq, isr_t handler, void* ctx);
+// Structure to hold information about an interrupt handler
+
+
+
+
 
 void irq_install();
 
 void irq_install_handler (int irq, void (*handler)(registers_t regs));
+
+
+//static void itoa(uint32_t value, char *str, int base);
+
+
+
+
+#define IRQ_COUNT 16
