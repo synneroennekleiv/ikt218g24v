@@ -99,6 +99,11 @@ void irq_uninstall_handler(int irq)
     irq_routines[irq] = 0;
 }
 
+// Register an IRQ handler
+void register_irq_handler(int irq, isr_t handler, void* ctx) {
+  irq_handlers[irq].handler = handler;
+  irq_handlers[irq].data = ctx;
+}
 
 /* Normally, IRQs 0 to 7 are mapped to entries 8 to 15. This
 *  is a problem in protected mode, because IDT entry 8 is a

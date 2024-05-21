@@ -9,6 +9,7 @@
 #include <isr.h>
 #include <memory/memory.h>
 #include <libc/stdio.h>
+#include <pit.h>
 
 
 // Declare the GDT initialization function implemented in assembly
@@ -32,6 +33,7 @@ int main(uint32_t magic, struct multiboot_info* mb_info_addr) {
     init_gdt();
     init_idt();
     init_keyboard();
+    init_pit();
 
     
     
