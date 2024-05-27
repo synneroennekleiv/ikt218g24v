@@ -58,6 +58,7 @@ SongPlayer* create_song_player() {
 
 extern "C" int kernel_main(void);
 
+// This is the main function
 int kernel_main() {
     
 
