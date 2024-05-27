@@ -4,8 +4,8 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "cstddef": "cpp",
-        ".tcc": "cpp",
-        ".ipp": "cpp",
+        "*.tcc": "cpp",
+        "*.ipp": "cpp",
         "stdbool.h": "c",
         "stddef.h": "c",
         "stdio.h": "c",
@@ -14,12 +14,7 @@
         "multiboot2.h": "c",
         "interrupts.h": "c",
         "memory.h": "c",
-        "limits.h": "c",
-        "descriptor_tables.h": "c",
-        "string.h": "c",
-        "stdarg.h": "c",
-        "isr.h": "c",
-        "io_ports.h": "c"
+        "limits.h": "c"
     }
 
 }
